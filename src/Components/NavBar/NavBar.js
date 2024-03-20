@@ -1,16 +1,23 @@
 // NavBar.js
 import React from 'react';
-import { Link } from 'react-router-dom';
-import './NavBar.css';
-
+import { Link, useLocation } from 'react-router-dom';
+import './NavBar.css'; // Import your CSS file
 
 function NavBar() {
+  const location = useLocation();
+
   return (
     <nav className="navbar">
       <ul>
-        <li><Link to="/Gallery">Gallery</Link></li>
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/Projects">Projects</Link></li>
+        <li className={location.pathname === '/Gallery' ? 'active' : ''}>
+          <Link to="/Gallery">Gallery</Link>
+        </li>
+        <li className={location.pathname === '/' ? 'active' : ''}>
+          <Link to="/">Home</Link>
+        </li>
+        <li className={location.pathname === '/Projects' ? 'active' : ''}>
+          <Link to="/Projects">Projects</Link>
+        </li>
       </ul>
     </nav>
   );
