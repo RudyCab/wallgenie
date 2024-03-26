@@ -39,7 +39,7 @@ function WallEditorPage() {
                   paddingRight: "10px",
                 }}
               >
-                <div class="col-8">
+                <div>
                   <div
                     className="left"
                     style={{
@@ -50,11 +50,6 @@ function WallEditorPage() {
                   >
                     <p>Wall Decor</p>
                   </div>
-                </div>
-                <div class="col-4">
-                  <button className="rounded" style={{ float: "right" }}>
-                    Select
-                  </button>
                 </div>
               </div>
               <div className="image-container">
