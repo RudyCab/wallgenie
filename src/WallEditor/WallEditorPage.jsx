@@ -1,9 +1,9 @@
 import SettingsPopup from "../Components/SettingsPopup/SettingsPopup";
+import "./WallEditorPage.css";
 
 function WallEditorPage() {
   return (
     <div>
-      <h1>Wall Editor Page</h1>
       <SettingsPopup />
     </div>
   );
