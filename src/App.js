@@ -8,6 +8,8 @@ import GalleryPage from "./Gallery/GalleryPage.jsx";
 import ProjectsPage from "./Projects/ProjectsPage.jsx";
 
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css"; // Import your custom CSS file
+
 // import { IoIosArrowBack } from "react-icons/io";
 // import { FaImage } from "react-icons/fa6";
 // import { AiFillHome } from "react-icons/ai";
@@ -16,14 +18,14 @@ import "bootstrap/dist/css/bootstrap.min.css";
 function App() {
   return (
     <Router>
-      <div>
-        <NavBar />
+      <div className="app-container">
         <Routes>
           <Route path="/" exact element={<HomePage />} />
           <Route path="/WallEditor" element={<WallEditorPage />} />
           <Route path="/Gallery" element={<GalleryPage />} />
           <Route path="/Projects" element={<ProjectsPage />} />
         </Routes>
+        <NavBar />
       </div>
     </Router>
   );
