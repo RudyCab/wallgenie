@@ -9,33 +9,58 @@ import { IoIosArrowBack } from "react-icons/io";
 
 function WallEditorPage() {
   const [alertDisplayed, setAlertDisplayed] = useState(false);
-
   const [topPaneSize, setTopPaneSize] = useState("65%");
 
   const handleResize = (size) => {
     setTopPaneSize(size);
   };
 
+  // Wall Constants
+  let PADDING = 20; // left, right padding
+  const MAX_WIDTH = 500;
+
+  const wall_width = Math.min(window.innerWidth - 2 * PADDING, MAX_WIDTH);
+
+  let x = PADDING;
+  if (wall_width === MAX_WIDTH) {
+    // ensures wall is still vertically aligned
+    x = (window.innerWidth - MAX_WIDTH) / 2;
+    PADDING = (window.innerWidth - MAX_WIDTH) / 2;
+  }
+
+  // Create new `Wall` instance
   const wall = new Wall(
-    1,
-    { x: 0, y: window.innerHeight * 0.25 },
-    { width: window.innerWidth, height: (2 / 3) * window.innerWidth },
-    { color: "lightgray", texture: "plain", isTextured: false },
-    []
+    { x: x, y: window.innerHeight * 0.25 },
+    {
+      width: wall_width,
+      height: (2 / 3) * wall_width,
+    },
+    {
+      color: "lightgray",
+      borderColor: "black",
+      borderWidth: 2,
+      texture: "plain",
+      isTextured: false,
+    },
+    [],
+    { PADDING: PADDING, MAX_WIDTH: MAX_WIDTH } // constants
   );
 
+  /* this container should contain the following components:
+    x - back button
+      - project name
+    x - settings button
+    x - wall component
+      - clear all button
+      - save button
+  */
   return (
     <div>
-      <div className="split-pane-wrapper" style={{ pointerEvents: "auto" }}>
-        {/* this container should contain the following components:
-            x - back button
-              - project name
-            x - settings button
-            x - wall component
-              - clear all button
-              - save button
-          */}
-        <div>
+      <div
+        className="page-container split-pane-wrapper"
+        style={{ pointerEvents: "auto" }}
+      >
+        <div className="top-row">
           <button className="back-button" disabled={alertDisplayed}>
             <IoIosArrowBack />
           </button>
@@ -46,7 +71,8 @@ function WallEditorPage() {
         </div>
         <WallComponent wall={wall} />
 
-        {/* <div className="split-pane-wrapper">
+        {/* SPLIT PAGE STUFF */}
+        <div className="split-pane-wrapper">
           <SplitPane
             split="horizontal"
             size={topPaneSize}
@@ -68,7 +94,7 @@ function WallEditorPage() {
                   paddingRight: "10px",
                 }}
               >
-                <div class="col-8">
+                <div>
                   <div
                     className="left"
                     style={{
@@ -79,11 +105,6 @@ function WallEditorPage() {
                   >
                     <p>Wall Decor</p>
                   </div>
-                </div>
-                <div class="col-4">
-                  <button className="rounded" style={{ float: "right" }}>
-                    Select
-                  </button>
                 </div>
               </div>
               <div className="image-container">
@@ -115,7 +136,7 @@ function WallEditorPage() {
               </div>
             </div>
           </SplitPane>
-        </div> */}
+        </div>
       </div>
     </div>
   );
