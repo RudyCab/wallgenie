@@ -16,8 +16,8 @@ function NavBar() {
         <li className={location.pathname === "/Gallery" ? "active" : ""}>
           <Link to="/Gallery"><FaImage size={30} /></Link>
         </li>
-        <li className={location.pathname === "/" ? "active" : ""}>
-          <Link to="/"><AiFillHome size={30}/></Link>
+        <li className={location.pathname === "/wallgenie" ? "active" : ""}>
+          <Link to="/wallgenie"><AiFillHome size={30}/></Link>
         </li>
         <li className={location.pathname === "/WallEditor" ? "active" : ""}>
           <Link to="/WallEditor"><ImPencil2 size={30}/></Link>
