@@ -1,15 +1,20 @@
 {
   "files": {
-    "main.css": "/wallgenie/static/css/main.eb690b6c.css",
-    "main.js": "/wallgenie/static/js/main.56a8108a.js",
+    "main.css": "/wallgenie/static/css/main.33ff7872.css",
+    "main.js": "/wallgenie/static/js/main.3ecdd19a.js",
     "static/js/453.21f6ae68.chunk.js": "/wallgenie/static/js/453.21f6ae68.chunk.js",
+    "static/media/Item5.jpg": "/wallgenie/static/media/Item5.d72cfe4b9be1ba53ea22.jpg",
+    "static/media/Item2.jpeg": "/wallgenie/static/media/Item2.d0db37317f2bb3daa9a6.jpeg",
+    "static/media/Item4.png": "/wallgenie/static/media/Item4.487647f9c23a3f81ac38.png",
+    "static/media/Item3.png": "/wallgenie/static/media/Item3.fa518a722fa0bd261645.png",
+    "static/media/Item1.png": "/wallgenie/static/media/Item1.219848af4e8d758d0953.png",
     "index.html": "/wallgenie/index.html",
-    "main.eb690b6c.css.map": "/wallgenie/static/css/main.eb690b6c.css.map",
-    "main.56a8108a.js.map": "/wallgenie/static/js/main.56a8108a.js.map",
+    "main.33ff7872.css.map": "/wallgenie/static/css/main.33ff7872.css.map",
+    "main.3ecdd19a.js.map": "/wallgenie/static/js/main.3ecdd19a.js.map",
     "453.21f6ae68.chunk.js.map": "/wallgenie/static/js/453.21f6ae68.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.eb690b6c.css",
-    "static/js/main.56a8108a.js"
+    "static/css/main.33ff7872.css",
+    "static/js/main.3ecdd19a.js"
   ]
 }
