@@ -6,9 +6,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import Sidebar from "./Sidebar";
 import "./SettingsPopup.css";
 
-const SettingsPopup = () => {
-  const [alertDisplayed, setAlertDisplayed] = useState(false);
-
+const SettingsPopup = ({ alertDisplayed, setAlertDisplayed }) => {
   const Alert = ({ setAlertDisplayed }) => {
     const alertStyle = {
       position: "fixed",

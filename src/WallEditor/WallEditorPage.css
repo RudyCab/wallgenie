@@ -20,3 +20,18 @@ span.Resizer.horizontal {
   height: 110px;
   margin: 10px;
 }
+
+body {
+  /* disables page scroll */
+  overflow: hidden;
+}
+
+.back-button {
+  position: absolute;
+  top: 10%;
+  left: 7.5%;
+  transform: translateY(-50%);
+  border-width: 0px;
+  background-color: white;
+  font-size: 2em;
+}

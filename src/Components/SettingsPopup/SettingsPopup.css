@@ -1,7 +1,7 @@
 .settings-button {
-  position: fixed;
-  right: 20px;
-  top: 10%; /* Adjust the vertical position */
+  position: absolute;
+  right: 7.5%;
+  top: 10%;
   transform: translateY(-50%);
   border-width: 0px;
   background-color: white;
@@ -22,7 +22,7 @@
   border-width: 0px;
   margin-top: 2.5px;
   margin-bottom: 2.5px;
-  box-shadow: 0px 0px 3px #00000050;
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.314);
 }
 
 .sidebar-button-disabled {
@@ -35,28 +35,3 @@
   font-size: 2em;
   padding-right: 4px;
 }
-
-/* .alert {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: rgba(254, 253, 249, 0.9);
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-  padding: 30px 20px;
-  width: 75%;
-  border-radius: 20px;
-  text-align: center;
-}
-
-.alert h1 {
-  font-size: xx-large;
-}
-
-.alert button {
-  background-color: #2A7676;
-  color: white;
-  font-size: medium;
-  margin-top: 7.5px;
-  border-radius: 10px;
-} */

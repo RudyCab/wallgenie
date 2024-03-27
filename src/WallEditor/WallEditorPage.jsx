@@ -3,21 +3,50 @@ import SettingsPopup from "../Components/SettingsPopup/SettingsPopup";
 import SplitPane from "react-split-pane";
 import "./WallEditorPage.css";
 import "bootstrap/dist/css/bootstrap.css";
+import WallComponent from "../Components/Wall/WallComponent";
+import { Wall } from "../Structs/Wall";
+import { IoIosArrowBack } from "react-icons/io";
 
 function WallEditorPage() {
+  const [alertDisplayed, setAlertDisplayed] = useState(false);
+
   const [topPaneSize, setTopPaneSize] = useState("65%");
 
   const handleResize = (size) => {
     setTopPaneSize(size);
   };
 
+  const wall = new Wall(
+    1,
+    { x: 0, y: window.innerHeight * 0.25 },
+    { width: window.innerWidth, height: (2 / 3) * window.innerWidth },
+    { color: "lightgray", texture: "plain", isTextured: false },
+    []
+  );
+
   return (
     <div>
       <div className="split-pane-wrapper" style={{ pointerEvents: "auto" }}>
-        <h1>Wall Editor Page</h1>
-        <SettingsPopup />
+        {/* this container should contain the following components:
+            x - back button
+              - project name
+            x - settings button
+            x - wall component
+              - clear all button
+              - save button
+          */}
+        <div>
+          <button className="back-button" disabled={alertDisplayed}>
+            <IoIosArrowBack />
+          </button>
+          <SettingsPopup
+            alertDisplayed={alertDisplayed}
+            setAlertDisplayed={setAlertDisplayed}
+          />
+        </div>
+        <WallComponent wall={wall} />
 
-        <div className="split-pane-wrapper">
+        {/* <div className="split-pane-wrapper">
           <SplitPane
             split="horizontal"
             size={topPaneSize}
@@ -86,7 +115,7 @@ function WallEditorPage() {
               </div>
             </div>
           </SplitPane>
-        </div>
+        </div> */}
       </div>
     </div>
   );
