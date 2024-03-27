@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import SettingsPopup from "../Components/SettingsPopup/SettingsPopup";
 import SplitPane from "react-split-pane";
+import Draggable from './Draggable'
 import "./WallEditorPage.css";
 import "bootstrap/dist/css/bootstrap.css";
 import WallComponent from "../Components/Wall/WallComponent";
@@ -108,11 +109,9 @@ function WallEditorPage() {
                 </div>
               </div>
               <div className="image-container">
-                <img
-                  src={require("../WallEditorImages/Item1.png")}
-                  alt="Item 1"
-                  className="image"
-                />
+                <Draggable img="../WallEditorImages/Item1.png" alt="Item 1"
+                  className="image"></Draggable>
+
                 <img
                   src={require("../WallEditorImages/Item2.jpeg")}
                   alt="Item 2"
