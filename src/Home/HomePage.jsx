@@ -16,6 +16,7 @@ function HomePage() {
     <div>
       <img src={logo} alt="logo of name and genie lamp"/>
       <div className='NewProjButt-'>
+        <button className="button">Current Project</button>
         <Link to="/WallEditor">
           <button className="button">New Project</button>
         </Link>

@@ -1,15 +1,18 @@
-.image-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    grid-gap: 10px;
-  }
-  
-  .image-item {
-    overflow: hidden;
-  }
-  
-  .image-item img {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
+.grid-container {
+  display: flex;
+  justify-content: center;
+  overflow-y: auto; 
+  max-height: 75vh;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); 
+  grid-gap: 20px; 
+  list-style-type: none;
+}
+
+.grid li {
+  padding-bottom: 25px; /* Add padding to the bottom of each grid item */
+}
+
