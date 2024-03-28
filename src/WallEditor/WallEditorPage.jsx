@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import SettingsPopup from "../Components/SettingsPopup/SettingsPopup";
 import SplitPane from "react-split-pane";
 import Draggable from './Draggable'
@@ -11,6 +11,7 @@ import { IoIosArrowBack } from "react-icons/io";
 function WallEditorPage() {
   const [alertDisplayed, setAlertDisplayed] = useState(false);
   const [topPaneSize, setTopPaneSize] = useState("65%");
+  const parentRef = useRef(null);
 
   const handleResize = (size) => {
     setTopPaneSize(size);
@@ -31,7 +32,7 @@ function WallEditorPage() {
 
   // Create new `Wall` instance
   const wall = new Wall(
-    { x: x, y: window.innerHeight * 0.25 },
+    { x: x, y: window.innerHeight * 0.25 - 120},
     {
       width: wall_width,
       height: (3 / 4) * wall_width,
@@ -56,30 +57,31 @@ function WallEditorPage() {
       - save button
   */
   return (
-    <div>
+    <div className="wallEditor">
       <div
         className="page-container split-pane-wrapper"
         style={{ pointerEvents: "auto" }}
       >
-        <div className="top-row">
+        <div ref={parentRef} className="top-row" id="toprow">
           <button className="back-button" disabled={alertDisplayed}>
             <IoIosArrowBack />
           </button>
-          <SettingsPopup
+        </div>
+        <div style={{height: "450px"}}>
+        <WallComponent wall={wall} />
+        </div>
+        <SettingsPopup
             alertDisplayed={alertDisplayed}
             setAlertDisplayed={setAlertDisplayed}
           />
-        </div>
-        <WallComponent wall={wall} />
-
         {/* SPLIT PAGE STUFF */}
-        <div className="split-pane-wrapper">
+        {/* <div className="split-pane-wrapper">
           <SplitPane
             split="horizontal"
             size={topPaneSize}
             onChange={(size) => handleResize(size)}
-          >
-            <div style={{ background: "#F9F9F9", height: "100%" }}></div>
+          > */}
+            {/* <div style={{ background: "#F9F9F9", height: "100%" }}></div> */}
             <div
               style={{
                 background: "#215F5F",
@@ -95,46 +97,38 @@ function WallEditorPage() {
                   paddingRight: "10px",
                 }}
               >
-                <div>
-                  <div
-                    className="left"
-                    style={{
-                      fontSize: "20px",
-                      color: "white",
-                      fontWeight: "bold",
+                 {/* <div>
+                   <div
+                     className="left"
+                     style={{
+                       fontSize: "20px",
+                       color: "white",
+                       fontWeight: "bold",
                     }}
                   >
                     <p>Wall Decor</p>
                   </div>
-                </div>
+                </div> */}
               </div>
               <div className="image-container">
-                <Draggable img="../WallEditorImages/Item1.png" alt="Item 1"
-                  className="image"></Draggable>
+                
+                <Draggable img="./WallEditorImages/Item1.png" alt="Item 1"
+                  className="image" x={0}></Draggable>
 
-                <img
-                  src={require("../WallEditorImages/Item2.jpeg")}
-                  alt="Item 2"
-                  className="image"
-                />
-                <img
-                  src={require("../WallEditorImages/Item3.png")}
-                  alt="Item 3"
-                  className="image"
-                />
-                <img
-                  src={require("../WallEditorImages/Item4.png")}
-                  alt="Item 4"
-                  className="image"
-                />
-                <img
-                  src={require("../WallEditorImages/Item5.jpg")}
-                  alt="Item 5"
-                  className="image"
-                />
+                <Draggable img="./WallEditorImages/Item2.jpeg" alt="Item 2"
+                  className="image" x={150}></Draggable>
+
+                <Draggable img="./WallEditorImages/Item3.png" alt="Item 3"
+                  className="image" x={250}></Draggable>
+
+                <Draggable img="./WallEditorImages/Item4.png" alt="Item 4"
+                  className="image" x={350}></Draggable>
+               
+               <Draggable img="./WallEditorImages/Item5.jpg" alt="Item 5"
+                  className="image" x={450}></Draggable>
               </div>
-            </div>
-          </SplitPane>
+            {/* </div>
+          </SplitPane> */}
         </div>
       </div>
     </div>

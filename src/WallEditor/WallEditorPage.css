@@ -11,14 +11,22 @@ span.Resizer.horizontal {
   overflow-y: auto;
 }
 
+
+.top-row {
+  position: absolute;
+}
+
 .image-container {
-  height: 100%;
-  flex-wrap: wrap;
+  width: 100%;
+  /* flex-wrap: wrap; */
+  position: absolute;
 }
 
 .image {
-  height: 110px;
+  /* height: 110px; */
   margin: 10px;
+  /* resize: both;
+  overflow: auto; */
 }
 
 body {
