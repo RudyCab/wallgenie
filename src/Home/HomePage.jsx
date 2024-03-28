@@ -1,19 +1,25 @@
 // HomePage.js
-import React from 'react';
 import { Link } from 'react-router-dom';
 import "./HomePage.css";
+import React, { useEffect } from 'react';
+import logo from '../logo.png'; // Import the image file
 
 function HomePage() {
-  const newProjctClick = () => {
-    // Go to wall Editor page
-  };
+  useEffect(() => {
+    document.body.style.backgroundColor = '#215F5F'; 
+    return () => {
+      document.body.style.backgroundColor = ''; 
+    };
+  }, []);
 
   return (
     <div>
-      <h1>Home Page</h1>
-      <Link to="/WallEditor">
-        <button className="NewProjectButt">New Project</button>
-      </Link>
+      <img src={logo} alt="logo of name and genie lamp"/>
+      <div className='NewProjButt-'>
+        <Link to="/WallEditor">
+          <button className="button">New Project</button>
+        </Link>
+      </div>
     </div>
   );
 }

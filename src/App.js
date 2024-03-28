@@ -10,7 +10,6 @@ import ProjectsPage from "./Projects/ProjectsPage.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
-// import { IoIosArrowBack } from "react-icons/io";
 
 
 function App() {

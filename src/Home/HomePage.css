@@ -1,9 +1,18 @@
 button {
+    position: relative;
     background-color: #FDCE78;
     color: #164343;
-    /* make button round */
-    /* make button text font */
-    /* make button text size */
-    /* position button */
-    align-items: center;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    border-radius: 90px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    padding: 10px 20px;
+    cursor: pointer; 
+    transition: background-color 0.3s ease;
+
+}
+
+.NewProjButt {
+    display: flex;
+    justify-content: center;
 }
