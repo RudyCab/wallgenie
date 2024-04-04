@@ -17,7 +17,7 @@ function App() {
     <Router>
       <div className="app-container">
         <Routes>
-          <Route path="/wallgenie" element={<HomePage />} />
+          <Route path="/wallgenie/" element={<HomePage />} />
           <Route path="/WallEditor" element={<WallEditorPage />} />
           <Route path="/Gallery" element={<GalleryPage />} />
           <Route path="/Projects" element={<ProjectsPage />} />
