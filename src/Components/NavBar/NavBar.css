@@ -33,12 +33,12 @@
 
 .navbar li.active::after {
   content: '';
-  width: 10px; 
-  height: 10px; 
+  width: 8px; 
+  height: 8px; 
   background-color: #FDCE78; 
   border-radius: 50%;
   position: absolute;
-  bottom: -10px;
+  bottom: -15px;
   left: 38%;
   transform: translateX(-50%);
 }
