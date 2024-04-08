@@ -5,11 +5,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import Sidebar from "./Sidebar";
 import "./SettingsPopup.css";
 
-const SettingsPopup = ({
-  alertDisplayed,
-  setAlertDisplayed,
-  setWallOptions,
-}) => {
+const SettingsPopup = ({ alertDisplayed, setAlertDisplayed }) => {
   const [popupType, setPopupType] = useState(""); // shuffle, multiselect, upload, wall-settings
 
   return (
@@ -29,11 +25,7 @@ const SettingsPopup = ({
         setPopupType={setPopupType}
       />
       {alertDisplayed && (
-        <Alert
-          setAlertDisplayed={setAlertDisplayed}
-          setWallOptions={setWallOptions}
-          popupType={popupType}
-        />
+        <Alert setAlertDisplayed={setAlertDisplayed} popupType={popupType} />
       )}
     </Popup>
   );
@@ -42,7 +34,7 @@ const SettingsPopup = ({
 /* 
 Keep Alert subcomponents in this file, or their styling gets messed up
 */
-const Alert = ({ setAlertDisplayed, setWallOptions, popupType }) => {
+const Alert = ({ setAlertDisplayed, popupType }) => {
   const alertContainerStyle = {
     position: "fixed",
     top: "50%",
@@ -64,35 +56,33 @@ const Alert = ({ setAlertDisplayed, setWallOptions, popupType }) => {
     borderRadius: "10px",
   };
 
-  return (
-    <div className="alert" style={alertContainerStyle}>
-      <AlertContent setWallOptions={setWallOptions} popupType={popupType} />
-      <button style={buttonStyle} onClick={() => setAlertDisplayed(false)}>
-        Close
-      </button>
-    </div>
-  );
-};
+  const handleClose = () => {
+    setAlertDisplayed(false);
+  };
 
-const AlertContent = ({ setWallOptions, popupType }) => {
+  let msg = "";
   switch (popupType) {
     case "shuffle":
+      msg = "You decor has been shuffled!";
       break;
     case "multiselect":
+      msg = "Multiselect is enabled!";
       break;
     case "upload":
-      break;
-    case "wall-settings":
-      setWallOptions((prevWallOptions) => ({
-        ...prevWallOptions,
-        wallColor: "red",
-      }));
+      msg = "For image uploading, visit the Decor Gallery!";
       break;
     default:
       break;
   }
 
-  return <></>;
+  return (
+    <div className="alert" style={alertContainerStyle}>
+      <h1 style={{ fontSize: "x-large" }}>{msg}</h1>
+      <button style={buttonStyle} onClick={handleClose}>
+        Close
+      </button>
+    </div>
+  );
 };
 
 export default SettingsPopup;

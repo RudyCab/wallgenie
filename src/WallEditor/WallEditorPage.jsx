@@ -8,6 +8,10 @@ import "bootstrap/dist/css/bootstrap.css";
 import { Wall } from "../Structs/Wall";
 import { IoIosArrowBack } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
+import Dropdown from "react-bootstrap/Dropdown";
+import DropdownButton from "react-bootstrap/DropdownButton";
+import { FaCircle } from "react-icons/fa";
+import Colors from "./Colors";
 
 function WallEditorPage() {
   const [alertDisplayed, setAlertDisplayed] = useState(false);
@@ -23,7 +27,7 @@ function WallEditorPage() {
   const __DISPLAY_SLIDER = false;
 
   // Wall Constants
-  let PADDING = 20; // left, right padding
+  let PADDING = 15; // left, right padding
   const MAX_WIDTH = 500;
 
   const wall_width = Math.min(window.innerWidth - 2 * PADDING, MAX_WIDTH);
@@ -53,11 +57,21 @@ function WallEditorPage() {
     { PADDING: PADDING, MAX_WIDTH: MAX_WIDTH } // constants
   );
 
-  const [wallOptions, setWallOptions] = useState({
-    wallColor: "lightgrey",
-    wallTexture: "plain",
-    isTextured: false,
-  });
+  const [wallColor, setWallColor] = useState("lightgrey");
+  const [wallTexture, setWallTexture] = useState("plain");
+  const [isTextured, setIsTextured] = useState(false);
+
+  const ColorDropdownItem = ({ color }) => {
+    return (
+      <Dropdown.Item
+        as="button"
+        onClick={() => setWallColor(color)}
+        style={{ backgroundColor: color }}
+      >
+        <FaCircle style={{ color }} />
+      </Dropdown.Item>
+    );
+  };
 
   return (
     <div className="wallEditor">
@@ -77,11 +91,30 @@ function WallEditorPage() {
           <SettingsPopup
             alertDisplayed={alertDisplayed}
             setAlertDisplayed={setAlertDisplayed}
-            setWallOptions={setWallOptions}
           />
         </div>
         <div style={{ height: "450px" }}>
-          <WallComponent wall={wall} wallOptions={wallOptions} />
+          <WallComponent wall={wall} wallColor={wallColor} />
+        </div>
+
+        {/* WALL COLOR DROPDOWN */}
+        <div className="dropdown-container">
+          <DropdownButton drop="down-centered" title="Wall Color" variant="n/a">
+            <div className="dropdown-grid">
+              <ColorDropdownItem color={Colors.RED} />
+              <ColorDropdownItem color={Colors.ORANGE} />
+              <ColorDropdownItem color={Colors.YELLOW} />
+              <ColorDropdownItem color={Colors.GREEN} />
+              <ColorDropdownItem color={Colors.BLUE} />
+              <ColorDropdownItem color={Colors.PURPLE} />
+              <ColorDropdownItem color={Colors.WHITE} />
+              <ColorDropdownItem color={Colors.LIGHTGRAY} />
+              <ColorDropdownItem color={Colors.GRAY} />
+              <ColorDropdownItem color={Colors.TAN} />
+              <ColorDropdownItem color={Colors.BROWN} />
+              <ColorDropdownItem color={Colors.BLACK} />
+            </div>
+          </DropdownButton>
         </div>
 
         {__DISPLAY_SLIDER && (

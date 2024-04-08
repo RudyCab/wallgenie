@@ -55,7 +55,11 @@ const ProjectTitle = ({ alertDisplayed }) => {
       ) : (
         <h1
           onClick={handleTitleClick}
-          style={{ color: title_color, fontWeight: "bold" }}
+          style={{
+            color: title_color,
+            fontWeight: "bold",
+            textDecoration: "underline",
+          }}
         >
           {projectTitle.length > MAX_VISIBLE_CHARS
             ? projectTitle.substring(0, MAX_VISIBLE_CHARS) + "..."

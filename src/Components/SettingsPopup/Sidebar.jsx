@@ -4,11 +4,11 @@ import { LuLassoSelect } from "react-icons/lu";
 import { RiImageAddFill } from "react-icons/ri";
 // import { FaCamera } from "react-icons/fa";
 // import { MdOutlineSaveAlt } from "react-icons/md";
-import { VscSettings } from "react-icons/vsc";
+// import { VscSettings } from "react-icons/vsc";
 
 const Sidebar = ({ alertDisplayed, setAlertDisplayed, setPopupType }) => {
-  const types = ["shuffle", "multiselect", "upload", "wall-settings"];
-  const icons = [IoShuffle, LuLassoSelect, RiImageAddFill, VscSettings];
+  const types = ["shuffle", "multiselect", "upload"];
+  const icons = [IoShuffle, LuLassoSelect, RiImageAddFill];
 
   const handleOnClick = (type) => {
     setAlertDisplayed(true);

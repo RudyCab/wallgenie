@@ -9,15 +9,13 @@ const __getDegreeBetween = (originX, originY, targetX, targetY) => {
   return theta;
 };
 
-const WallComponent = ({ wall, wallOptions }) => {
+const WallComponent = ({ wall, wallColor }) => {
   // extract values
   const { constants, coordinates, size, border } = wall;
   const { PADDING } = constants;
   const { x, y } = coordinates;
   const { width, height } = size;
   const { borderColor, borderWidth } = border;
-
-  const { wallColor, wallTexture, isTextured } = wallOptions;
 
   const rectStyle = {
     position: "fixed",
