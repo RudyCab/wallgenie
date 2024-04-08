@@ -38,15 +38,3 @@ body {
   background-color: transparent;
   font-size: 2em;
 }
-
-/* Project Title styling */
-.project-title {
-  position: absolute;
-  top: 10.75%;
-  left: 50%;
-  transform: translate(-50%, -50%); /* center vertically */
-
-  /* handles text overflow styling */
-  white-space: nowrap;
-  overflow: hidden;
-}

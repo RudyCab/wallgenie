@@ -34,7 +34,7 @@ const WallComponent = ({ wall }) => {
       top: top,
       width: `${borderWidth}px`,
       height: height,
-      backgroundImage: `linear-gradient(to bottom, white 30%, ${borderColor} 55%)`, // apply gradient
+      backgroundImage: `linear-gradient(to bottom, transparent 30%, ${borderColor} 55%)`, // apply gradient
       transform: `rotate(${angle}deg)`,
     };
   };
