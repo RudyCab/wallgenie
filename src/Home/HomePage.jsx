@@ -16,11 +16,12 @@ function HomePage() {
     <div>
       <img src={logo} alt="logo of name and genie lamp" />
       <div className="homepage-button-container">
-        <button className="homepage-button" style={{ marginRight: 10 }}>
+        <button className="homepage-buttons" style={{ marginRight: 10 }}>
           Current Project
         </button>
+        <div></div>
         <Link to="/WallEditor">
-          <button className="homepage-button">New Project</button>
+          <button className="homepage-buttons">New Project</button>
         </Link>
       </div>
     </div>

@@ -17,6 +17,9 @@ function GalleryGrid() {
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1y02qsTqhqRewmscxKSA5EhSFdXEV3nf0ow&usqp=CAU",
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQse1zRZVz4M3qO31_C4zz78HUSpgFj7PUFhg&usqp=CAU"
   ];
+
+  const decorFromClass = []
+  
   
   return (
     <div>
