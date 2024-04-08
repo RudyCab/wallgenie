@@ -1,4 +1,4 @@
-const getDegreeBetween = (originX, originY, targetX, targetY) => {
+const __getDegreeBetween = (originX, originY, targetX, targetY) => {
   let dx = originX - targetX;
   let dy = originY - targetY;
 
@@ -9,13 +9,13 @@ const getDegreeBetween = (originX, originY, targetX, targetY) => {
   return theta;
 };
 
-const WallComponent = ({ wall }) => {
+const WallComponent = ({ wall, wallColor }) => {
   // extract values
-  const { constants, coordinates, size, wallOptions } = wall;
+  const { constants, coordinates, size, border } = wall;
   const { PADDING } = constants;
   const { x, y } = coordinates;
   const { width, height } = size;
-  const { color, borderColor, borderWidth } = wallOptions;
+  const { borderColor, borderWidth } = border;
 
   const rectStyle = {
     position: "fixed",
@@ -24,7 +24,7 @@ const WallComponent = ({ wall }) => {
     width: width,
     height: height,
     border: `${borderWidth}px solid ${borderColor}`,
-    backgroundColor: color,
+    backgroundColor: wallColor,
   };
 
   const renderLine = (left, top, angle) => {
@@ -34,7 +34,7 @@ const WallComponent = ({ wall }) => {
       top: top,
       width: `${borderWidth}px`,
       height: height,
-      backgroundImage: `linear-gradient(to bottom, transparent 30%, ${borderColor} 55%)`, // apply gradient
+      backgroundImage: `linear-gradient(to bottom, transparent 30%, ${borderColor} 45%)`, // apply gradient
       transform: `rotate(${angle}deg)`,
     };
   };

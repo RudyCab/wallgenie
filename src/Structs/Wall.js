@@ -1,8 +1,8 @@
 export class Wall {
-  constructor(coordinates, size, wallOptions, decorItems, constants) {
+  constructor(coordinates, size, border, decorItems, constants) {
     this.coordinates = coordinates; // x, y
     this.size = size; // width, height
-    this.wallOptions = wallOptions; // color, borderColor, borderWidth, texture, isTextured
+    this.border = border; // borderColor, borderWidth
     this.decorItems = decorItems;
     this.constants = constants; // PADDING, MAX_WIDTH
   }

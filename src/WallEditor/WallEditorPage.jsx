@@ -8,45 +8,14 @@ import "bootstrap/dist/css/bootstrap.css";
 import { Wall } from "../Structs/Wall";
 import { IoIosArrowBack } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
+import Dropdown from "react-bootstrap/Dropdown";
+import DropdownButton from "react-bootstrap/DropdownButton";
+import { FaCircle } from "react-icons/fa";
+import Colors from "./Colors";
 
 function WallEditorPage() {
   const [alertDisplayed, setAlertDisplayed] = useState(false);
   const parentRef = useRef(null);
-
-  // for debugging purposess
-  const __DISPLAY_SLIDER = false;
-
-  // Wall Constants
-  let PADDING = 20; // left, right padding
-  const MAX_WIDTH = 500;
-
-  const wall_width = Math.min(window.innerWidth - 2 * PADDING, MAX_WIDTH);
-
-  let x = PADDING;
-  if (wall_width === MAX_WIDTH) {
-    // ensures wall is still vertically aligned
-    x = (window.innerWidth - MAX_WIDTH) / 2;
-    PADDING = (window.innerWidth - MAX_WIDTH) / 2;
-  }
-
-  // Create new `Wall` instance
-  const VERTICAL_OFFSET = wall_width !== MAX_WIDTH ? -60 : -15; // adjust offset based on if on phone vs laptop
-  const wall = new Wall(
-    { x: x, y: window.innerHeight * 0.25 + VERTICAL_OFFSET },
-    {
-      width: wall_width,
-      height: (3 / 4) * wall_width,
-    },
-    {
-      color: "lightgray",
-      borderColor: "black",
-      borderWidth: 2,
-      texture: "plain",
-      isTextured: false,
-    },
-    [],
-    { PADDING: PADDING, MAX_WIDTH: MAX_WIDTH } // constants
-  );
 
   // back button navigation
   const navigate = useNavigate();
@@ -54,14 +23,56 @@ function WallEditorPage() {
     navigate(-1);
   };
 
-  /* this container should contain the following components:
-    x - back button
-    x - project name
-    x - settings button
-    x - wall component
-      - clear all button
-      - save button
+  // for debugging purposess
+  const __DISPLAY_SLIDER = false;
+
+  // Wall Constants
+  let PADDING = 15; // left, right padding
+  const MAX_WIDTH = 500;
+
+  const wall_width = Math.min(window.innerWidth - 2 * PADDING, MAX_WIDTH);
+
+  let x = PADDING; // assume phone screen, therefore place wall x-val @ 20px
+  if (wall_width === MAX_WIDTH) {
+    // laptop screen, ensures wall is still vertically aligned
+    x = (window.innerWidth - MAX_WIDTH) / 2;
+    PADDING = (window.innerWidth - MAX_WIDTH) / 2;
+  }
+
+  /*
+  Create new `Wall` instance
   */
+  const VERTICAL_OFFSET = wall_width !== MAX_WIDTH ? -60 : -15; // adjust offset based on if user's on phone vs laptop
+  const wall = new Wall(
+    { x: x, y: window.innerHeight * 0.25 + VERTICAL_OFFSET },
+    {
+      width: wall_width,
+      height: (3 / 4) * wall_width,
+    },
+    {
+      borderColor: "black",
+      borderWidth: 2,
+    },
+    [],
+    { PADDING: PADDING, MAX_WIDTH: MAX_WIDTH } // constants
+  );
+
+  const [wallColor, setWallColor] = useState("lightgrey");
+  const [wallTexture, setWallTexture] = useState("plain");
+  const [isTextured, setIsTextured] = useState(false);
+
+  const ColorDropdownItem = ({ color }) => {
+    return (
+      <Dropdown.Item
+        as="button"
+        onClick={() => setWallColor(color)}
+        style={{ backgroundColor: color }}
+      >
+        <FaCircle style={{ color }} />
+      </Dropdown.Item>
+    );
+  };
+
   return (
     <div className="wallEditor">
       <div
@@ -83,7 +94,27 @@ function WallEditorPage() {
           />
         </div>
         <div style={{ height: "450px" }}>
-          <WallComponent wall={wall} />
+          <WallComponent wall={wall} wallColor={wallColor} />
+        </div>
+
+        {/* WALL COLOR DROPDOWN */}
+        <div className="dropdown-container">
+          <DropdownButton drop="down-centered" title="Wall Color" variant="n/a">
+            <div className="dropdown-grid">
+              <ColorDropdownItem color={Colors.RED} />
+              <ColorDropdownItem color={Colors.ORANGE} />
+              <ColorDropdownItem color={Colors.YELLOW} />
+              <ColorDropdownItem color={Colors.GREEN} />
+              <ColorDropdownItem color={Colors.BLUE} />
+              <ColorDropdownItem color={Colors.PURPLE} />
+              <ColorDropdownItem color={Colors.WHITE} />
+              <ColorDropdownItem color={Colors.LIGHTGRAY} />
+              <ColorDropdownItem color={Colors.GRAY} />
+              <ColorDropdownItem color={Colors.TAN} />
+              <ColorDropdownItem color={Colors.BROWN} />
+              <ColorDropdownItem color={Colors.BLACK} />
+            </div>
+          </DropdownButton>
         </div>
 
         {__DISPLAY_SLIDER && (

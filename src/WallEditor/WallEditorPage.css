@@ -38,3 +38,16 @@ body {
   background-color: transparent;
   font-size: 2em;
 }
+
+/* WALL COLOR (DROPDOWN) STUFF */
+.dropdown-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translate(0%, -55%);
+}
+
+.dropdown-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 columns */
+}
