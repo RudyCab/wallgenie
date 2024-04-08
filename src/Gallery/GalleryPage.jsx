@@ -5,30 +5,37 @@ import './GalleryPage.css';
 import { DecorItem } from '../Structs/DecorItem';
 
 function GalleryPage() {
-  const [importedImages, setImportedImages] = useState([
- ]);
+  const [importedImages, setImportedImages] = useState([]);
 
   useEffect(() => {
     document.body.style.backgroundColor = '#215F5F'; 
+
+    // Load images from local storage
+    const storedImages = JSON.parse(localStorage.getItem('importedImages')) || [];
+    setImportedImages(storedImages);
+
     return () => {
       document.body.style.backgroundColor = ''; 
-      const storedImages = JSON.parse(localStorage.getItem('decorItems')) || [];
-      setImportedImages(storedImages);
-    };  }, []);
-
-    const handleImageUpload = (newImages) => {
-      console.log('adding image');
-      newImages.forEach((image, index) => {
-        // Save the image URL to localStorage
-        saveImageToLocalStorage(image);
-      });
     };
-  
-    const saveImageToLocalStorage = (image) => {
-      const existingImages = JSON.parse(localStorage.getItem('importedImages')) || [];
-      localStorage.setItem('importedImages', JSON.stringify([...existingImages, image]));
-      setImportedImages(prevImages => [...prevImages, image]);
-    }
+  }, []);
+
+  const handleImageUpload = (newImages) => {
+    newImages.forEach((image, index) => {
+      // Convert image to Base64 string
+      const reader = new FileReader();
+      reader.onload = () => {
+        // Save the Base64 string to localStorage
+        saveImageToLocalStorage(reader.result);
+      };
+      reader.readAsDataURL(image);
+    });
+  };
+
+  const saveImageToLocalStorage = (imageData) => {
+    const existingImages = JSON.parse(localStorage.getItem('importedImages')) || [];
+    localStorage.setItem('importedImages', JSON.stringify([...existingImages, imageData]));
+    setImportedImages(prevImages => [...prevImages, imageData]);
+  }
 
   return (
     <div>
