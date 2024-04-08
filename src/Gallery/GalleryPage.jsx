@@ -10,6 +10,7 @@ function GalleryPage() {
   useEffect(() => {
     document.body.style.backgroundColor = '#215F5F'; 
 
+
     // Load images from local storage
     const storedImages = JSON.parse(localStorage.getItem('importedImages')) || [];
     setImportedImages(storedImages);
@@ -37,6 +38,7 @@ function GalleryPage() {
     setImportedImages(prevImages => [...prevImages, imageData]);
   }
 
+
   return (
     <div>
       <div className='TopHeader'>
@@ -44,7 +46,7 @@ function GalleryPage() {
           <p>Gallery</p>
         </div>
         <div className="buttonContainer">
-          <button className="button">Select</button>
+          <button className="buttonSelect">Select</button>
           <label htmlFor="file-input">
             <MdAddPhotoAlternate size={40} className="iconButton" />
             {/* Hidden file input to trigger file selection */}

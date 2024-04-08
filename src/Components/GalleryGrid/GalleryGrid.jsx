@@ -4,8 +4,8 @@ import './GalleryGrid.css';
 function GalleryGrid({ images }) {
   return (
     <div>
-      <div className="grid-container">
-        <ul className="grid">
+      <div className="decorGrid-container">
+        <ul className="decorGrid">
           {images.map((imageUrl, index) => (
             <li key={index}>
               <img src={imageUrl} alt={`Image ${index + 1}`} />

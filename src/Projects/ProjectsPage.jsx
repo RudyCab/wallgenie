@@ -25,8 +25,8 @@ function ProjectPage() {
       </div>
 
 
-      <div className="grid-container">
-        <ul className="grid">
+      <div className="folderGrid-container">
+        <ul className="folderGrid">
           <li className="folder">
             <FaFolder size={75} className="folder-icon" />
             <div className="folder-text">

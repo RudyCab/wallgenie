@@ -14,9 +14,10 @@
   align-items: center; 
   margin-left: 65%;
   margin-bottom: -450px;
+  margin-top: -50px;
 }
 
-.button {
+.buttonSelect {
   background-color: #FDCE78;
   color: #164343;
   font-family: 'Roboto', sans-serif;
@@ -25,9 +26,12 @@
   padding: 5px 10px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  margin-top: -30px;
+
 }
 
 .iconButton {
   cursor: pointer;
-  margin-top: -40px;
+  margin-top: -45px;
+  margin-left: 15px;
 }
