@@ -14,7 +14,7 @@ function GalleryPage() {
   return (
     <div>
       <div className='TopHeader'>
-        <div className="projectText">
+        <div className="galleryText">
           <p>Gallery</p>
         </div>
         <div className="buttonContainer">

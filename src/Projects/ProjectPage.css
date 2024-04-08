@@ -5,9 +5,17 @@
     font-size: 50px;
 }
 
+.projectText {
+  padding-top: 25px;
+  margin-left: 25px; 
+}
+
+
 .buttonContainer {
+  display: flex;
+  align-items: center; 
   margin-left: 65%;
-  margin-top: -95px;
+  margin-top: -70px;
 }
 
 .button {
@@ -23,24 +31,23 @@
 }
 
 .grid-container {
-    display: flex;
-    justify-content: center;
-  }
-  
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); 
-    grid-gap: 20px; 
-    /* grid-row-gap: 120px; */
-    list-style-type: none;
-  }
-  
-  .grid li svg {
-    fill: #82BFBF; 
+  display: block;
+  align-items: center; 
 }
 
-  .grid li span {
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); 
+  list-style-type: none;
+}
+
+.grid li {
     margin-top: 10px; 
     font-family: 'Palanquin Dark', sans-serif;
     color: whitesmoke;
-  }
+}
+
+
+.folder-icon {
+  fill: #82BFBF; 
+}

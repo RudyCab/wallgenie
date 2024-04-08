@@ -5,18 +5,17 @@
     font-family: 'Roboto', sans-serif;
     font-weight: bold;
     border-radius: 90px;
-    box-shadow: 0px .5px .5px #fec150;
     padding: 10px 20px; 
     cursor: pointer; 
     transition: background-color 0.3s ease;
     font-size: 20px;
-    margin-bottom: 75px;
+    margin-top: 25px;
 }
 
 .homepage-button-container {
-
+    padding-top: 25px;
     text-align: center; 
-    margin: 310px auto 0; 
+    margin: -100px auto 0; 
 }
 
 img {
