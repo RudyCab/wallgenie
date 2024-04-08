@@ -13,6 +13,12 @@ function WallEditorPage() {
   const [alertDisplayed, setAlertDisplayed] = useState(false);
   const parentRef = useRef(null);
 
+  // back button navigation
+  const navigate = useNavigate();
+  const handleBackButtonClick = () => {
+    navigate(-1);
+  };
+
   // for debugging purposess
   const __DISPLAY_SLIDER = false;
 
@@ -22,15 +28,17 @@ function WallEditorPage() {
 
   const wall_width = Math.min(window.innerWidth - 2 * PADDING, MAX_WIDTH);
 
-  let x = PADDING;
+  let x = PADDING; // assume phone screen, therefore place wall x-val @ 20px
   if (wall_width === MAX_WIDTH) {
-    // ensures wall is still vertically aligned
+    // laptop screen, ensures wall is still vertically aligned
     x = (window.innerWidth - MAX_WIDTH) / 2;
     PADDING = (window.innerWidth - MAX_WIDTH) / 2;
   }
 
-  // Create new `Wall` instance
-  const VERTICAL_OFFSET = wall_width !== MAX_WIDTH ? -60 : -15; // adjust offset based on if on phone vs laptop
+  /*
+  Create new `Wall` instance
+  */
+  const VERTICAL_OFFSET = wall_width !== MAX_WIDTH ? -60 : -15; // adjust offset based on if user's on phone vs laptop
   const wall = new Wall(
     { x: x, y: window.innerHeight * 0.25 + VERTICAL_OFFSET },
     {
@@ -38,30 +46,19 @@ function WallEditorPage() {
       height: (3 / 4) * wall_width,
     },
     {
-      color: "lightgray",
       borderColor: "black",
       borderWidth: 2,
-      texture: "plain",
-      isTextured: false,
     },
     [],
     { PADDING: PADDING, MAX_WIDTH: MAX_WIDTH } // constants
   );
 
-  // back button navigation
-  const navigate = useNavigate();
-  const handleBackButtonClick = () => {
-    navigate(-1);
-  };
+  const [wallOptions, setWallOptions] = useState({
+    wallColor: "lightgrey",
+    wallTexture: "plain",
+    isTextured: false,
+  });
 
-  /* this container should contain the following components:
-    x - back button
-    x - project name
-    x - settings button
-    x - wall component
-      - clear all button
-      - save button
-  */
   return (
     <div className="wallEditor">
       <div
@@ -80,10 +77,11 @@ function WallEditorPage() {
           <SettingsPopup
             alertDisplayed={alertDisplayed}
             setAlertDisplayed={setAlertDisplayed}
+            setWallOptions={setWallOptions}
           />
         </div>
         <div style={{ height: "450px" }}>
-          <WallComponent wall={wall} />
+          <WallComponent wall={wall} wallOptions={wallOptions} />
         </div>
 
         {__DISPLAY_SLIDER && (
