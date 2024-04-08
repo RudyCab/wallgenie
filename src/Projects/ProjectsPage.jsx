@@ -8,7 +8,7 @@ function ProjectPage() {
   useEffect(() => {
     document.body.style.backgroundColor = '#215F5F'; 
     return () => {
-      document.body.style.backgroundColor = ''; 
+      document.body.style.backgroundColor = '';
     };
   }, []);
   
@@ -27,10 +27,32 @@ function ProjectPage() {
 
       <div className="grid-container">
         <ul className="grid">
-          <li><FaFolder size={100}/><span>Favorites</span></li>
-          <li><FaFolder size={100}/><span>Coquette</span></li>
-          <li><FaFolder size={100}/><span>Minimalist</span></li>
-          <li><FaFolder size={100}/><span>Plant Mom</span></li>
+          <li className="folder">
+            <FaFolder size={75} className="folder-icon" />
+            <div className="folder-text">
+              <span>Favorites</span>
+            </div>
+          </li>
+
+          <li className="folder">
+            <FaFolder size={75} className="folder-icon" />
+            <div className="folder-text">
+              <span>Coquette</span>
+            </div>
+          </li>     
+
+          <li className="folder">
+            <FaFolder size={75} className="folder-icon" />
+            <div className="folder-text">
+              <span>Minimalist</span>
+            </div>
+          </li>  
+          <li className="folder">
+            <FaFolder size={75} className="folder-icon" />
+            <div className="folder-text">
+              <span>Plant Mom</span>
+            </div>
+          </li>  
         </ul>
        </div>
     </div>
