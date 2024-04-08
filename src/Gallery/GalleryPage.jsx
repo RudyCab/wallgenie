@@ -46,7 +46,7 @@ function GalleryPage() {
         <div className="buttonContainer">
           <button className="button">Select</button>
           <label htmlFor="file-input">
-            <MdAddPhotoAlternate size={40} style={{ cursor: 'pointer' }} />
+            <MdAddPhotoAlternate size={40} className="iconButton" />
             {/* Hidden file input to trigger file selection */}
             <input id="file-input" type="file" accept="image/*" multiple style={{ display: 'none' }} onChange={(e) => handleImageUpload(Array.from(e.target.files))} />
           </label>

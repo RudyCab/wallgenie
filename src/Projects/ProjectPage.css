@@ -28,23 +28,30 @@
   cursor: pointer;
   transition: background-color 0.3s ease;
   margin-right: 15px;
+  margin-top: 3px;
 }
 
 .grid-container {
-  display: block;
-  align-items: center; 
+  display: flex; 
+  flex-wrap: wrap; 
+  justify-content: center; 
+  margin-top: 5px; 
+  margin-left: -25px;
 }
 
 .grid {
   display: grid;
+  flex-wrap: wrap;
   grid-template-columns: repeat(3, 1fr); 
   list-style-type: none;
+  justify-content: space-around;
 }
 
 .grid li {
     margin-top: 10px; 
     font-family: 'Palanquin Dark', sans-serif;
     color: whitesmoke;
+    text-align: center; 
 }
 
 
