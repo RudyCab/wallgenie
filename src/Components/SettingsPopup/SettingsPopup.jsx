@@ -63,13 +63,13 @@ const Alert = ({ setAlertDisplayed, popupType }) => {
   let msg = "";
   switch (popupType) {
     case "shuffle":
-      msg = "You decor has been shuffled!";
+      msg = "You decor items have been shuffled!";
       break;
     case "multiselect":
-      msg = "Multiselect is enabled!";
+      msg = "Multiselect is now enabled!";
       break;
     case "upload":
-      msg = "For image uploading, visit the Decor Gallery!";
+      msg = "Visit the Decor Gallery page for more!";
       break;
     default:
       break;

@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import { FaCircle } from "react-icons/fa";
+import { IoIosAddCircleOutline } from "react-icons/io";
 import Colors from "./Colors";
 
 function WallEditorPage() {
@@ -27,7 +28,7 @@ function WallEditorPage() {
   const __DISPLAY_SLIDER = false;
 
   // Wall Constants
-  let PADDING = 15; // left, right padding
+  let PADDING = 17.5;
   const MAX_WIDTH = 500;
 
   const wall_width = Math.min(window.innerWidth - 2 * PADDING, MAX_WIDTH);
@@ -57,9 +58,9 @@ function WallEditorPage() {
     { PADDING: PADDING, MAX_WIDTH: MAX_WIDTH } // constants
   );
 
-  const [wallColor, setWallColor] = useState("lightgrey");
-  const [wallTexture, setWallTexture] = useState("plain");
-  const [isTextured, setIsTextured] = useState(false);
+  const [wallColor, setWallColor] = useState("#e8e4e4");
+  // const [wallTexture, setWallTexture] = useState("plain");
+  // const [isTextured, setIsTextured] = useState(false);
 
   const ColorDropdownItem = ({ color }) => {
     return (
@@ -72,6 +73,28 @@ function WallEditorPage() {
       </Dropdown.Item>
     );
   };
+
+  const dropdownButtonStyle = {
+    position: "fixed",
+    top: wall.coordinates.y + wall.size.height + 10,
+    left: "50%",
+    transform: "translateX(-50%)",
+  };
+
+  let colors = [
+    Colors.RED,
+    Colors.ORANGE,
+    Colors.YELLOW,
+    Colors.GREEN,
+    Colors.BLUE,
+    Colors.PURPLE,
+    Colors.WHITE,
+    Colors.LIGHTGRAY,
+    Colors.GRAY,
+    Colors.TAN,
+    Colors.BROWN,
+    Colors.BLACK,
+  ];
 
   return (
     <div className="wallEditor">
@@ -98,23 +121,16 @@ function WallEditorPage() {
         </div>
 
         {/* WALL COLOR DROPDOWN */}
-        <div className="dropdown-container">
-          <DropdownButton drop="down-centered" title="Wall Color" variant="n/a">
-            <div className="dropdown-grid">
-              <ColorDropdownItem color={Colors.RED} />
-              <ColorDropdownItem color={Colors.ORANGE} />
-              <ColorDropdownItem color={Colors.YELLOW} />
-              <ColorDropdownItem color={Colors.GREEN} />
-              <ColorDropdownItem color={Colors.BLUE} />
-              <ColorDropdownItem color={Colors.PURPLE} />
-              <ColorDropdownItem color={Colors.WHITE} />
-              <ColorDropdownItem color={Colors.LIGHTGRAY} />
-              <ColorDropdownItem color={Colors.GRAY} />
-              <ColorDropdownItem color={Colors.TAN} />
-              <ColorDropdownItem color={Colors.BROWN} />
-              <ColorDropdownItem color={Colors.BLACK} />
-            </div>
-          </DropdownButton>
+        <div className="dropdown-container" style={dropdownButtonStyle}>
+          {!alertDisplayed && (
+            <DropdownButton drop="up-centered" title="Wall Color" variant="n/a">
+              <div className="dropdown-grid">
+                {colors.map((color, index) => (
+                  <ColorDropdownItem color={color} key={index} />
+                ))}
+              </div>
+            </DropdownButton>
+          )}
         </div>
 
         {__DISPLAY_SLIDER && (
