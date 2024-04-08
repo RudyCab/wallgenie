@@ -18,7 +18,6 @@ function GalleryGrid() {
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQse1zRZVz4M3qO31_C4zz78HUSpgFj7PUFhg&usqp=CAU"
   ];
 
-  const decorFromClass = []
   
   
   return (
