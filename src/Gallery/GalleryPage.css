@@ -1,16 +1,23 @@
 .TopHeader {
     color: #FDCE78;
-    padding-bottom: 10%;
     font-family: 'Ramaraja', sans-serif;
     font-size: 50px;
 }
 
-.buttonContainer {
-  margin-left: 65%;
-  margin-top: -95px;
+.galleryText {
+  padding-top: 25px;
+  margin-left: 25px; 
 }
 
-.button {
+.buttonContainer {
+  display: flex;
+  align-items: center; 
+  margin-left: 65%;
+  margin-bottom: -450px;
+  margin-top: -50px;
+}
+
+.buttonSelect {
   background-color: #FDCE78;
   color: #164343;
   font-family: 'Roboto', sans-serif;
@@ -19,6 +26,12 @@
   padding: 5px 10px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  margin-right: 15px;
+  margin-top: -30px;
+
 }
 
+.iconButton {
+  cursor: pointer;
+  margin-top: -45px;
+  margin-left: 15px;
+}

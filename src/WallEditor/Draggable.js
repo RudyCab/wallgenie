@@ -1,85 +1,118 @@
+import Draggable from 'react-draggable';
 import React, { useState, useRef, useEffect } from 'react';
-import "./WallEditorPage.css";
-import 'bootstrap/dist/css/bootstrap.css';
+import { FaRandom } from 'react-icons/fa';
 
 
-function Draggable(props) {
-const resetPos = () => {
-    setPosition({x: props.x, y: 0})
-    setHeight(110)
-    setWidth(80)
+
+
+class Drag extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      top: 0,
+      left: 0,
+      height: '15vh',
+      width: '10vh', 
+      mouseStart: {x:0, y:0},
+      dragging: false
+    }
+  }
+
+  handleStop = (e, data) => {
+    console.log("Mouse up event occurred!");
+    if (e.clientX < 10 || e.clientY < 100 || e.clientY > 300) {
+      console.log("inside if")
+      this.setState(prevState => ({
+        top: 0,
+        left: 0,
+      }))
+    } else { // use the Draggable lastX and lastY prop
+      this.setState(prevState => ({
+        top: data.lastY,
+        left: data.lastX
+      }))
+    }
+    console.log(e.clientX)
+    console.log(e.clientY)
+  };
+
+  handleShuffle = () => {
+    if (this.state.top !== 0 && this.state.left != 0) {
+      this.setState(prevState => ({
+        // top: Math.random() * (300 - 100) + 100,
+        // left: Math.random() * (300 - 10) + 10
+        top: this.state.top + (Math.random() * (100 - 20) + 20) * (Math.random() * (1 + 1) - 1), 
+        left: this.state.left + (Math.random() * (100 - 20) + 20) * (Math.random() * (1 + 1) - 1)
+      }))
+  }
+    this.props.setShuffle(false)
+  }
+
+  
+
+  handleMouseMove = (e) => {
+    console.log("hi")
+    this.setState(prevState => ({
+      dragging: true,
+      mouseStart: {x:e.offsetX, y: e.offsetY}
+    }), () => {
+      console.log("move")
+      console.log("dragging " + this.state.dragging)
+      if (this.state.dragging === true) {
+        const pixelDifference = Math.max(this.state.mouseStart.x - e.offsetX, this.state.mouseStart.y - e.offsetY);
+        console.log(pixelDifference)
+        this.setState(prevState => ({
+          height: this.state.height + pixelDifference,
+          width: this.state.width + pixelDifference,
+          mouseStart: {x:e.offsetX, y: e.offsetY}
+        }))
+    }
+    })
+  }
+
+  handleMouseUp = (e) => {
+    console.log("up")
+    this.setState(prevState => ({
+      dragging: false
+    }))
+  }
+ 
+  render() {
+
+  // function Drag(props) {
+    return (
+      <Draggable
+        axis="both"
+        handle=".handle"
+        defaultPosition={null}
+        position={{x:this.state.left, y:this.state.top}}
+        scale={1}
+        onStart={this.handleStart}
+        onDrag={this.handleDrag}
+        onStop={this.handleStop}>
+        <div         
+        >
+  {console.log("top is" + this.state.top)}
+  {console.log("left is" + this.state.left)}
+  {console.log(this.props.shuffle)}
+  {this.props.shuffle && this.handleShuffle()}
+        <div>
+          {/* <button style={{height: '10px', width:80, fontSize:'8px'}} onClick={() => {
+            this.setState(prevState => ({
+              top: 0,
+              left: 0
+            }))
+          }}>remove</button> */}
+          <img src={this.props.img} className="handle" style={{height: this.state.height, width: this.state.width}} />
+          {/* <div className="handle" style={{backgroundImage: require("" + this.props.img), backgroundSize:'contain', width:100, height:100}}></div> */}
+          
+          </div>
+          {/* <button onMouseDown={this.handleMouseDown} onMouseMove={this.handleMouseMove} onMouseUp={this.handleMouseUp} style={{height: '10px', width:80, fontSize:'8px'}}>Resize</button> */}
+          
+        </div>
+      </Draggable>
+    );
+  }
 }
 
-  /* dragging and dropping and image state/ref */
-  const [position, setPosition] = useState({x: props.x, y: 0});
-  const [isDragging, setIsDragging] = useState(false);
-  const [offset, setOffset] = useState({x: props.x, y: 0});
-  const dragRef = useRef(null)
-
-  /* resizing image state/ref */
-  const [height, setHeight] = useState(110)
-  const [width, setWidth] = useState(80)
-  const [resizing, setResizing] = useState(false)
-  const [mouseResize, setMouseResize] = useState({x: 0, y:0})
-  const resizeRef = useRef(null)
-
-  /* Holding image */
-  const onMouseDown = (e) => {
-    setIsDragging(true);
-    setOffset({x: e.clientX - position.x , y: e.clientY - position.y});
-
-  };
-  /* Image is moving while being held */
-  const onMouseMove = (e) => {
-    if (!isDragging) return;
-    setPosition({x: e.clientX - offset.x, y: e.clientY - offset.y});
-  };
-
-  /* Image let go */
-  const onMouseUp = () => {
-    setIsDragging(false);
-  };
-
-  /* Clicked resize button */
-  const onResizeDown = (e) => {
-    setResizing(true)
-    setMouseResize({x: e.offsetX, y: e.offsetY})
-  }
-
-  /* Holding and dragging resize button */
-  const onResizeMove = (e) => {
-    if(!resizing) return;
-    setHeight(height + 100);
-    setWidth(width + 100)
-    setResizing(false)
-  }
-
-  /* Resize button let go*/
-  const onResizeUp = (e) => {
-    setResizing(false)
-    resizeRef.current.removeEventListener("mousemove", onResizeMove)
-  }
-
-  return (
-    <div>
-    <div onMouseDown={onMouseDown} onMouseMove={onMouseMove} onMouseUp={onMouseUp}
-      ref={dragRef}
-      style={{
-        position: 'absolute',
-        /* Change position based on calculated x, y above*/
-        top: position.y,
-        left: position.x,
-        cursor: 'pointer',
-        width: "100px"
-      }}>
-      <button style={{width:"2px", fontSize:"5px"}} onClick={resetPos}>X</button>
-      <img draggable src={require("" + props.img)} className="image" style={{height: height, width: width}} />
-      <button ref={resizeRef} style={{width:"30px", fontSize:"5px", left:"30px"}} 
-      onMouseDown={onResizeDown} onMouseMove={onResizeMove} onMouseUp={onResizeUp}
-      >Resize</button>
-    </div>
-    </div>
-  );
-};
-
-export default Draggable;
+export default Drag;

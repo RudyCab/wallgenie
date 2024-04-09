@@ -1,135 +1,161 @@
 import React, { useState, useRef } from "react";
 import SettingsPopup from "../Components/SettingsPopup/SettingsPopup";
-import SplitPane from "react-split-pane";
-import Draggable from './Draggable'
+import WallComponent from "../Components/Wall/WallComponent";
+import ProjectTitle from "../Components/ProjectTitle/ProjectTitle";
+import Draggable from "./Draggable";
 import "./WallEditorPage.css";
 import "bootstrap/dist/css/bootstrap.css";
-import WallComponent from "../Components/Wall/WallComponent";
 import { Wall } from "../Structs/Wall";
 import { IoIosArrowBack } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
+import Dropdown from "react-bootstrap/Dropdown";
+import DropdownButton from "react-bootstrap/DropdownButton";
+import { FaCircle } from "react-icons/fa";
+import { IoIosAddCircleOutline } from "react-icons/io";
+import Colors from "./Colors";
 
-function WallEditorPage() {
+function WallEditorPage({images}) {
+  const [shuffle, setShuffle] = useState(false)
+
   const [alertDisplayed, setAlertDisplayed] = useState(false);
-  const [topPaneSize, setTopPaneSize] = useState("65%");
   const parentRef = useRef(null);
 
-  const handleResize = (size) => {
-    setTopPaneSize(size);
+  // back button navigation
+  const navigate = useNavigate();
+  const handleBackButtonClick = () => {
+    navigate(-1);
   };
 
+  // for debugging purposess
+  const __DISPLAY_SLIDER = true;
+
   // Wall Constants
-  let PADDING = 20; // left, right padding
+  let PADDING = 17.5;
   const MAX_WIDTH = 500;
 
   const wall_width = Math.min(window.innerWidth - 2 * PADDING, MAX_WIDTH);
 
-  let x = PADDING;
+  let x = PADDING; // assume phone screen, therefore place wall x-val @ 20px
   if (wall_width === MAX_WIDTH) {
-    // ensures wall is still vertically aligned
+    // laptop screen, ensures wall is still vertically aligned
     x = (window.innerWidth - MAX_WIDTH) / 2;
     PADDING = (window.innerWidth - MAX_WIDTH) / 2;
   }
 
-  // Create new `Wall` instance
+  /*
+  Create new `Wall` instance
+  */
+  const VERTICAL_OFFSET = wall_width !== MAX_WIDTH ? -60 : -15; // adjust offset based on if user's on phone vs laptop
   const wall = new Wall(
-    { x: x, y: window.innerHeight * 0.25 - 120},
+    { x: x, y: window.innerHeight * 0.25 + VERTICAL_OFFSET },
     {
       width: wall_width,
       height: (3 / 4) * wall_width,
     },
     {
-      color: "lightgray",
       borderColor: "black",
       borderWidth: 2,
-      texture: "plain",
-      isTextured: false,
     },
     [],
     { PADDING: PADDING, MAX_WIDTH: MAX_WIDTH } // constants
   );
 
-  /* this container should contain the following components:
-    x - back button
-      - project name
-    x - settings button
-    x - wall component
-      - clear all button
-      - save button
-  */
+  const [wallColor, setWallColor] = useState("#e8e4e4");
+  // const [wallTexture, setWallTexture] = useState("plain");
+  // const [isTextured, setIsTextured] = useState(false);
+
+  const ColorDropdownItem = ({ color }) => {
+    return (
+      <Dropdown.Item
+        as="button"
+        onClick={() => setWallColor(color)}
+        style={{ backgroundColor: color }}
+      >
+        <FaCircle style={{ color }} />
+      </Dropdown.Item>
+    );
+  };
+
+  const dropdownButtonStyle = {
+    position: "fixed",
+    top: wall.coordinates.y + wall.size.height + 10,
+    left: "50%",
+    transform: "translateX(-50%)",
+  };
+
+  let colors = [
+    Colors.RED,
+    Colors.ORANGE,
+    Colors.YELLOW,
+    Colors.GREEN,
+    Colors.BLUE,
+    Colors.PURPLE,
+    Colors.WHITE,
+    Colors.LIGHTGRAY,
+    Colors.GRAY,
+    Colors.TAN,
+    Colors.BROWN,
+    Colors.BLACK,
+  ];
+
   return (
     <div className="wallEditor">
       <div
         className="page-container split-pane-wrapper"
         style={{ pointerEvents: "auto" }}
       >
-        <div ref={parentRef} className="top-row" id="toprow">
-          <button className="back-button" disabled={alertDisplayed}>
+        <div ref={parentRef} className="top-row">
+          <button
+            className="back-button"
+            disabled={alertDisplayed}
+            onClick={handleBackButtonClick}
+          >
             <IoIosArrowBack />
           </button>
-        </div>
-        <div style={{height: "450px"}}>
-        <WallComponent wall={wall} />
-        </div>
-        <SettingsPopup
+          <ProjectTitle alertDisplayed={alertDisplayed} />
+          <SettingsPopup
             alertDisplayed={alertDisplayed}
             setAlertDisplayed={setAlertDisplayed}
+            setShuffle={setShuffle}
           />
-        {/* SPLIT PAGE STUFF */}
-        {/* <div className="split-pane-wrapper">
-          <SplitPane
-            split="horizontal"
-            size={topPaneSize}
-            onChange={(size) => handleResize(size)}
-          > */}
-            {/* <div style={{ background: "#F9F9F9", height: "100%" }}></div> */}
-            <div
-              style={{
-                background: "#215F5F",
-                height: "100%",
-                overflowY: "auto",
-              }}
-            >
-              <div
-                class="row"
-                style={{
-                  paddingTop: "10px",
-                  paddingLeft: "10px",
-                  paddingRight: "10px",
-                }}
-              >
-                 {/* <div>
-                   <div
-                     className="left"
-                     style={{
-                       fontSize: "20px",
-                       color: "white",
-                       fontWeight: "bold",
-                    }}
-                  >
-                    <p>Wall Decor</p>
-                  </div>
-                </div> */}
-              </div>
-              <div className="image-container">
-                
-                <Draggable img="./WallEditorImages/Item1.png" alt="Item 1"
-                  className="image" x={0}></Draggable>
-
-                <Draggable img="./WallEditorImages/Item2.jpeg" alt="Item 2"
-                  className="image" x={150}></Draggable>
-
-                <Draggable img="./WallEditorImages/Item3.png" alt="Item 3"
-                  className="image" x={250}></Draggable>
-
-                <Draggable img="./WallEditorImages/Item4.png" alt="Item 4"
-                  className="image" x={350}></Draggable>
-               
-               <Draggable img="./WallEditorImages/Item5.jpg" alt="Item 5"
-                  className="image" x={450}></Draggable>
-              </div>
-            {/* </div>
-          </SplitPane> */}
         </div>
+        <div style={{ height: "350px" }}>
+          <WallComponent wall={wall} wallColor={wallColor} />
+        </div>
+
+        {/* WALL COLOR DROPDOWN */}
+        <div className="dropdown-container" style={dropdownButtonStyle}>
+          {!alertDisplayed && (
+            <DropdownButton drop="up-centered" title="Wall Color" variant="n/a">
+              <div className="dropdown-grid">
+                {colors.map((color, index) => (
+                  <ColorDropdownItem color={color} key={index} />
+                ))}
+              </div>
+            </DropdownButton>
+          )}
+        </div>
+
+
+         
+            <div style={{height:'10px', width:'100%', background: "#215F5F"}}></div>
+            <div className="row image-container" style={{height: "100%"}} >
+              <div class="col">
+                
+            {images && images.map((imageUrl, index) => (
+              <Draggable
+              img={imageUrl}
+              alt={`Image ${index + 1}`}
+              className="image"
+              shuffle={shuffle}
+              setShuffle={setShuffle}
+            />
+          ))}
+          </div>
+          </div>
+              
+     
+      
       </div>
     </div>
   );

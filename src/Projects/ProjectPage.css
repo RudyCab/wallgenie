@@ -5,9 +5,17 @@
     font-size: 50px;
 }
 
+.projectText {
+  padding-top: 25px;
+  margin-left: 25px; 
+}
+
+
 .buttonContainer {
+  display: flex;
+  align-items: center; 
   margin-left: 65%;
-  margin-top: -95px;
+  margin-top: -70px;
 }
 
 .button {
@@ -20,27 +28,34 @@
   cursor: pointer;
   transition: background-color 0.3s ease;
   margin-right: 15px;
+  margin-top: 3px;
 }
 
-.grid-container {
-    display: flex;
-    justify-content: center;
-  }
-  
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); 
-    grid-gap: 20px; 
-    /* grid-row-gap: 120px; */
-    list-style-type: none;
-  }
-  
-  .grid li svg {
-    fill: #82BFBF; 
+.folderGrid-container {
+  display: flex; 
+  flex-wrap: wrap; 
+  justify-content: center; 
+  margin-top: 70px; 
+  margin-left: -25px;
 }
 
-  .grid li span {
+.folderGrid {
+  display: grid;
+  flex-wrap: wrap;
+  grid-template-columns: repeat(3, 1fr); 
+  list-style-type: none;
+  justify-content: space-around;
+  grid-gap: 30px;
+}
+
+.folderGrid li {
     margin-top: 10px; 
     font-family: 'Palanquin Dark', sans-serif;
     color: whitesmoke;
-  }
+    text-align: center; 
+}
+
+
+.folder-icon {
+  fill: #82BFBF; 
+}
