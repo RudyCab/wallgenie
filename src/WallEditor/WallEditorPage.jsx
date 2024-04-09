@@ -14,7 +14,9 @@ import { FaCircle } from "react-icons/fa";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import Colors from "./Colors";
 
-function WallEditorPage() {
+function WallEditorPage({images}) {
+  const [shuffle, setShuffle] = useState(false)
+
   const [alertDisplayed, setAlertDisplayed] = useState(false);
   const parentRef = useRef(null);
 
@@ -25,7 +27,7 @@ function WallEditorPage() {
   };
 
   // for debugging purposess
-  const __DISPLAY_SLIDER = false;
+  const __DISPLAY_SLIDER = true;
 
   // Wall Constants
   let PADDING = 17.5;
@@ -114,9 +116,10 @@ function WallEditorPage() {
           <SettingsPopup
             alertDisplayed={alertDisplayed}
             setAlertDisplayed={setAlertDisplayed}
+            setShuffle={setShuffle}
           />
         </div>
-        <div style={{ height: "450px" }}>
+        <div style={{ height: "350px" }}>
           <WallComponent wall={wall} wallColor={wallColor} />
         </div>
 
@@ -133,56 +136,26 @@ function WallEditorPage() {
           )}
         </div>
 
-        {__DISPLAY_SLIDER && (
-          <div
-            style={{
-              background: "#215F5F",
-              height: "100%",
-              overflowY: "auto",
-            }}
-          >
-            <div
-              class="row"
-              style={{
-                paddingTop: "10px",
-                paddingLeft: "10px",
-                paddingRight: "10px",
-              }}
+
+         
+            <div style={{height:'10px', width:'100%', background: "#215F5F"}}></div>
+            <div className="row image-container" style={{height: "100%"}} >
+              <div class="col">
+                
+            {images && images.map((imageUrl, index) => (
+              <Draggable
+              img={imageUrl}
+              alt={`Image ${index + 1}`}
+              className="image"
+              shuffle={shuffle}
+              setShuffle={setShuffle}
             />
-            <div className="image-container">
-              <Draggable
-                img="./WallEditorImages/Item1.png"
-                alt="Item 1"
-                className="image"
-                x={0}
-              />
-              <Draggable
-                img="./WallEditorImages/Item2.jpeg"
-                alt="Item 2"
-                className="image"
-                x={150}
-              />
-              <Draggable
-                img="./WallEditorImages/Item3.png"
-                alt="Item 3"
-                className="image"
-                x={250}
-              />
-              <Draggable
-                img="./WallEditorImages/Item4.png"
-                alt="Item 4"
-                className="image"
-                x={350}
-              />
-              <Draggable
-                img="./WallEditorImages/Item5.jpg"
-                alt="Item 5"
-                className="image"
-                x={450}
-              />
-            </div>
+          ))}
           </div>
-        )}
+          </div>
+              
+     
+      
       </div>
     </div>
   );

@@ -4,8 +4,7 @@ import GalleryGrid from "../Components/GalleryGrid/GalleryGrid";
 import './GalleryPage.css'; 
 import { DecorItem } from '../Structs/DecorItem';
 
-function GalleryPage() {
-  const [importedImages, setImportedImages] = useState([]);
+function GalleryPage({importedImages, setImportedImages}) {
 
   useEffect(() => {
     document.body.style.backgroundColor = '#215F5F'; 

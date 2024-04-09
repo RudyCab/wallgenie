@@ -5,7 +5,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import Sidebar from "./Sidebar";
 import "./SettingsPopup.css";
 
-const SettingsPopup = ({ alertDisplayed, setAlertDisplayed }) => {
+const SettingsPopup = ({ alertDisplayed, setAlertDisplayed, setShuffle }) => {
   const [popupType, setPopupType] = useState(""); // shuffle, multiselect, upload, wall-settings
 
   return (
@@ -23,6 +23,7 @@ const SettingsPopup = ({ alertDisplayed, setAlertDisplayed }) => {
         alertDisplayed={alertDisplayed}
         setAlertDisplayed={setAlertDisplayed}
         setPopupType={setPopupType}
+        setShuffle={setShuffle}
       />
       {alertDisplayed && (
         <Alert setAlertDisplayed={setAlertDisplayed} popupType={popupType} />

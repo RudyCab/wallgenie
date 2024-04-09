@@ -1,27 +1,16 @@
-/* slide bar */
-span.Resizer.horizontal {
-  width: 100%;
-  background: black;
-  height: 10px;
-  box-sizing: border-box;
-}
-
-/* scroll feature */
-.split-pane-wrapper .Pane.horizontal {
-  overflow-y: auto;
-}
-
 .image-container {
   width: 100%;
   /* flex-wrap: wrap; */
   position: absolute;
+  /* overflow-y: scroll; */
+  height: 100%;
 }
 
 .image {
   /* height: 110px; */
-  margin: 10px;
   /* resize: both;
   overflow: auto; */
+  position: relative;
 }
 
 body {

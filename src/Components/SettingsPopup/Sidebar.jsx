@@ -6,13 +6,17 @@ import { RiImageAddFill } from "react-icons/ri";
 // import { MdOutlineSaveAlt } from "react-icons/md";
 // import { VscSettings } from "react-icons/vsc";
 
-const Sidebar = ({ alertDisplayed, setAlertDisplayed, setPopupType }) => {
+const Sidebar = ({ alertDisplayed, setAlertDisplayed, setPopupType, setShuffle }) => {
   const types = ["shuffle", "multiselect", "upload"];
   const icons = [IoShuffle, LuLassoSelect, RiImageAddFill];
 
   const handleOnClick = (type) => {
-    setAlertDisplayed(true);
-    setPopupType(types[type]);
+    if (type == 0) {
+      setShuffle(true)
+    } else {
+      setAlertDisplayed(true);
+      setPopupType(types[type]);
+    }
   };
 
   return (
