@@ -1,12 +1,12 @@
 .TopHeader {
-    color: #FDCE78;
-    font-family: 'Ramaraja', sans-serif;
-    font-size: 50px;
+  color: #FDCE78;
+  font-size: 45px;
 }
 
 .galleryText {
-  padding-top: 25px;
-  margin-left: 25px; 
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  padding-top: 50px;
+  margin-left: 40px;
 }
 
 .buttonContainer {
@@ -17,21 +17,10 @@
   margin-top: -50px;
 }
 
-.buttonSelect {
-  background-color: #FDCE78;
-  color: #164343;
-  font-family: 'Roboto', sans-serif;
-  font-size: 15px;
-  border-radius: 90px;
-  padding: 5px 10px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-top: -30px;
-
-}
-
 .iconButton {
   cursor: pointer;
-  margin-top: -45px;
-  margin-left: 15px;
+  position: fixed;
+  right: 0;
+  margin-right: 40px;
+  font-size: 40px;
 }

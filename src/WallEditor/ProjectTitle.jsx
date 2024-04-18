@@ -1,11 +1,4 @@
 import React, { useState } from "react";
-import "./ProjectTitle.css";
-
-/*
-
-Component used for the editable title displayed on WallEditorPage
-
-*/
 
 const ProjectTitle = ({ alertDisplayed }) => {
   const [projectTitle, setProjectTitle] = useState("Untitled #1");
@@ -41,8 +34,18 @@ const ProjectTitle = ({ alertDisplayed }) => {
   const DEFAULT_COLOR = "#267a7a";
   let title_color = alertDisplayed ? DEFAULT_COLOR + "8c" : DEFAULT_COLOR;
 
+  const projectTitleStyle = {
+    position: "absolute",
+    top: "10.75%",
+    left: "50%",
+    transform: "translate(-50%, -50%)", // center vertically
+    // handles text overflow styling
+    whiteSpace: "nowrap",
+    overflow: "hidden",
+  };
+
   return (
-    <div className="project-title">
+    <div className="project-title" style={projectTitleStyle}>
       {isEditing ? (
         <input
           type="text"
@@ -58,7 +61,6 @@ const ProjectTitle = ({ alertDisplayed }) => {
           style={{
             color: title_color,
             fontWeight: "bold",
-            textDecoration: "underline",
           }}
         >
           {projectTitle.length > MAX_VISIBLE_CHARS

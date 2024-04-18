@@ -1,29 +1,36 @@
 import { useState } from "react";
 import Popup from "reactjs-popup";
-import "reactjs-popup/dist/index.css";
 import { GiHamburgerMenu } from "react-icons/gi";
 import Sidebar from "./Sidebar";
 import "./SettingsPopup.css";
+import "reactjs-popup/dist/index.css";
 
-const SettingsPopup = ({ alertDisplayed, setAlertDisplayed, setShuffle }) => {
+const SettingsPopup = ({ alertDisplayed, setAlertDisplayed, setShuffle, setClearAll, setWallEditorImportClicked, setImageUploadParam }) => {
   const [popupType, setPopupType] = useState(""); // shuffle, multiselect, upload, wall-settings
 
   return (
     <Popup
       trigger={
         <button className="settings-button" disabled={alertDisplayed}>
-          <GiHamburgerMenu />
+          <GiHamburgerMenu
+            className={
+              alertDisplayed ? "top-row-icon-disabled" : "top-row-icon-enabled"
+            }
+          />
         </button>
       }
       position="bottom"
       closeOnDocumentClick={false}
-      contentStyle={{ width: 53 }}
+      contentStyle={{ width: 62.5 }}
     >
       <Sidebar
         alertDisplayed={alertDisplayed}
         setAlertDisplayed={setAlertDisplayed}
         setPopupType={setPopupType}
         setShuffle={setShuffle}
+        setClearAll={setClearAll}
+        setWallEditorImportClicked={setWallEditorImportClicked}
+        setImageUploadParam={setImageUploadParam}
       />
       {alertDisplayed && (
         <Alert setAlertDisplayed={setAlertDisplayed} popupType={popupType} />
@@ -40,7 +47,7 @@ const Alert = ({ setAlertDisplayed, popupType }) => {
     position: "fixed",
     top: "50%",
     left: "50%",
-    transform: "translate(-50%, -50%)",
+    transform: "translate(-50%, -80%)",
     backgroundColor: "rgba(254, 253, 249, 0.9)",
     boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.5)",
     padding: "30px 20px",
@@ -55,6 +62,8 @@ const Alert = ({ setAlertDisplayed, popupType }) => {
     fontSize: "medium",
     marginTop: "7.5px",
     borderRadius: "10px",
+    paddingTop: "3px",
+    paddingBottom: "3px",
   };
 
   const handleClose = () => {
@@ -64,13 +73,12 @@ const Alert = ({ setAlertDisplayed, popupType }) => {
   let msg = "";
   switch (popupType) {
     case "shuffle":
-      msg = "You decor items have been shuffled!";
-      break;
-    case "multiselect":
-      msg = "Multiselect is now enabled!";
       break;
     case "upload":
-      msg = "Visit the Decor Gallery page for more!";
+      msg = "Add image upload functionality here";
+      break;
+    case "spotlight":
+      msg = "Add spotlight functionality here";
       break;
     default:
       break;

@@ -1,15 +1,14 @@
 .TopHeader {
-    color: #FDCE78;
-    padding-bottom: 10%;
-    font-family: 'Ramaraja', sans-serif;
-    font-size: 50px;
+  color: #FDCE78;
+  font-size: 45px;
+  padding-bottom: 10%;
 }
 
 .projectText {
-  padding-top: 25px;
-  margin-left: 25px; 
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  padding-top: 50px;
+  margin-left: 40px; 
 }
-
 
 .buttonContainer {
   display: flex;
@@ -27,16 +26,23 @@
   padding: 5px 10px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  margin-right: 15px;
-  margin-top: 3px;
+}
+
+.button-icon {
+  cursor: pointer;
+  position: fixed;
+  right: 0;
+  margin-top: 42.5px;
+  margin-right: 40px;
+  font-size: 37.5px;
 }
 
 .folderGrid-container {
   display: flex; 
   flex-wrap: wrap; 
   justify-content: center; 
-  margin-top: 70px; 
-  margin-left: -25px;
+  margin-top: 100px; 
+  margin-left: -30px;
 }
 
 .folderGrid {
@@ -49,13 +55,16 @@
 }
 
 .folderGrid li {
-    margin-top: 10px; 
-    font-family: 'Palanquin Dark', sans-serif;
-    color: whitesmoke;
-    text-align: center; 
+  margin-top: 10px; 
+  font-family: 'Palanquin Dark', sans-serif;
+  color: whitesmoke;
+  text-align: center; 
 }
-
 
 .folder-icon {
   fill: #82BFBF; 
+}
+
+.folder-text {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }

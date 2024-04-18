@@ -1,15 +1,20 @@
-import React from 'react';
-import './CurrentProjectCard.css'; 
-import hardCodedCurrentImage from './hardCodedCurrent.png'; 
-
+import React from "react";
+import "./CurrentProjectCard.css";
+import hardCodedCurrentImage from "./hardCodedCurrent.png";
 
 function CurrentProjectCard({ imagePath }) {
-    return (
-      <div className="current-project-card">
-        <img src={hardCodedCurrentImage} alt="Current Project Image" />
-        <button>Current Project</button>
-      </div>
-    );
+  if (imagePath === "") {
+    imagePath = hardCodedCurrentImage;
   }
+
+  console.log("image path ", imagePath);
+
+  return (
+    <div className="current-project-card">
+      <img src={imagePath} alt="Current Project Image" />
+      <span>Project Spotlight</span>
+    </div>
+  );
+}
 
 export default CurrentProjectCard;

@@ -1,29 +1,33 @@
 /* CurrentProjectCard.css */
 .current-project-card {
-    width: 300px;
-    border-radius: 25px;
-    margin-bottom: 50px;
-    margin: 0 auto;
-    padding-bottom: 25px;
-    background-color: #2A7676;
-    
-  }
-  
-  .current-project-card img {
-    width: 100%;
-    height: auto;
-    border-radius: 25px;
-    margin-bottom: 25px;
-  }
-  
-  .current-project-card button {
-    position: relative;
-    background-color: #FDCE78;
-    color: #164343;
-    font-family: 'Roboto', sans-serif;
-    font-weight: bold;
-    border-radius: 75px;
-    padding: 10px 20px; 
-    cursor: pointer; 
-    font-size: 18px;
-  }
+  width: 300px;
+  border-radius: 25px;
+  margin-bottom: 50px;
+  margin: 0 auto;
+  padding-bottom: 17.5px;
+  background-color: #2A7676;
+  box-shadow: 
+    0 0 15px #0000001a,
+    inset 0 0 20px #40767696;
+}
+
+.current-project-card img {
+  width: 100%;
+  height: 230px;
+  border-radius: 30px;
+  padding: 17.5px;
+  object-fit: cover;
+  object-position: center 27%;
+  /* background-size: cover; */
+  /* background-position: center; */
+}
+
+.current-project-card span {
+  position: relative;
+  color: #f5c872;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bolder;
+  font-style: italic;
+  font-size: 28px;
+  text-shadow: 0 0 10px #00000068;
+}
