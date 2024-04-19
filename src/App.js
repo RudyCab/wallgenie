@@ -18,7 +18,7 @@ function App() {
     <Router>
       <div className="app-container">
         <Routes>
-          <Route path="/wallgenie-test/" element={<HomePage />} />
+          <Route path="/wallgenie/" element={<HomePage />} />
           <Route
             path="/WallEditor"
             element={<WallEditorPage images={importedImages} 

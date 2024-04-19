@@ -25,9 +25,9 @@ function NavBar() {
           </Link>
         </li>
         <li
-          className={location.pathname === "/wallgenie-test/" ? "active" : ""}
+          className={location.pathname === "/wallgenie/" ? "active" : ""}
         >
-          <Link to="/wallgenie-test/">
+          <Link to="/wallgenie/">
             <AiFillHome size={33.5 * ICON_MULTIPLIER} />
           </Link>
         </li>
