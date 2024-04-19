@@ -33,7 +33,7 @@ const SettingsPopup = ({ alertDisplayed, setAlertDisplayed, setShuffle, setClear
         setImageUploadParam={setImageUploadParam}
       />
       {alertDisplayed && (
-        <Alert setAlertDisplayed={setAlertDisplayed} popupType={popupType} />
+        setAlertDisplayed(false)
       )}
     </Popup>
   );
@@ -75,10 +75,8 @@ const Alert = ({ setAlertDisplayed, popupType }) => {
     case "shuffle":
       break;
     case "upload":
-      msg = "Add image upload functionality here";
       break;
     case "spotlight":
-      msg = "Add spotlight functionality here";
       break;
     default:
       break;
